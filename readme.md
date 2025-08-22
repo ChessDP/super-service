@@ -1,22 +1,29 @@
-# DevOps Interview Task
+# Axi Assessment
 
-Thank you for taking the time to do our technical test. We need to deploy a new .NET Core Web API application using a docker container.
+The Powershell script is located on `.\Deploy.ps1`.
+This contains the steps in building the docker image, running it on a container, and pushing the image to the docker registry.
 
-Write code to do the following:
+We also have the `Dockerfile` where the application will be built and tests will be ran.
 
-1. Run the automated tests
-2. Package the application as a docker image
-3. Deploy and run the image locally or in a public cloud
+## Pre-requisite
 
-Improvements can also be made. For example:
+Ensure you have the following installed in your system:
+- Docker
+- Git
+- .NET SDK vesion 3.1 or latest
 
-- Make any changes to the application you think are useful for a deploy process
-- Host the application in a secure fashion
+## Instruction
 
-The application is included under [`.\super-service`](`.\super-service`).
+1. On your local machine, pull the Git repository found here: https://github.com/ChessDP/super-service
+2. Open the repository in an IDE or a terminal.
+3. Under the `devops` folder, run `.\Deploy.ps1` on the terminal.
+4. You can check the image by runnung the command, `docker image ls `.
 
-Your solution should be triggered by a powershell script called `Deploy.ps1`.
+## Bonus
 
-## Submitting
+If you want to run the docker image in an orchestration like k8s, install `minikube` and do the following:
 
-Create a Git repository which includes instructions on how to run the solution.  
+1. Run the minikube cluster with the command `minikube start`.
+2. K8s uses the default namespace which is `default`. If you want to create another namespace, run `kubectl create ns axi`.
+3. Deploy the docker image `kubectl create deployment super-service --image=chessdp/super-service-test --namespace=axi --replicas=3`.
+4. Monitor the pods being created `kubectl -n axi get po`. You'll see 3 instances as we created 3 replicas.

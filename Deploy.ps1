@@ -13,7 +13,10 @@ $imageName = "super-service-test"
 docker build -t chessdp/$imageName .
 
 # run the Docker container
-docker run --rm chessdp/$imageName
+docker run chessdp/$imageName
+
+# push the Docker image to the registry
+docker push chessdp/$imageName
 
 # get the exit code
 $exitCode = $LASTEXITCODE

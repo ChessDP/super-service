@@ -11,5 +11,4 @@ COPY . ./
 RUN dotnet build
 
 # run the tests
-# CMD ["dotnet", "test", "--no-build", "--verbosity", "normal"]
 RUN dotnet test --no-build --verbosity normal
